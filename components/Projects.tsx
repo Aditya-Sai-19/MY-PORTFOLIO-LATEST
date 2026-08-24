@@ -7,6 +7,7 @@ import {
   Flower2,
   Home,
   ShieldCheck,
+  MessageSquareText,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import InteractiveSelector, {
@@ -16,9 +17,18 @@ import { SOCIAL_LINKS } from "@/constants/theme";
 
 const PROJECT_OPTIONS: SelectorOption[] = [
   {
+    title: "CultureSense",
+    description:
+      "AI-driven employee intelligence platform.",
+    image: "/Culture Sense.jpeg",
+    icon: <MessageSquareText size={24} className="text-white" />,
+    href: "#",
+    imageFit: "contain",
+  },
+  {
     title: "Fake Review Detection",
     description:
-      "A Flask-based web app that detects fake Amazon food reviews using a hybrid deep learning model combining CNN, LSTM, and fuzzy logic.",
+      "A Flask-based web app that detects fake Amazon food reviews.",
     image:
       "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
     icon: <BrainCircuit size={24} className="text-white" />,
@@ -27,7 +37,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
   {
     title: "IRIS Classification Model",
     description:
-      "Supervised learning model that classifies iris flower species from petal and sepal dimensions using decision trees and logistic regression.",
+      "Supervised learning model that classifies iris flower species.",
     image:
       "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80",
     icon: <Flower2 size={24} className="text-white" />,
@@ -36,7 +46,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
   {
     title: "House Price Prediction",
     description:
-      "Regression model predicting housing prices from location, size, and amenities with feature engineering and multi-algorithm comparison.",
+      "Regression model predicting housing prices from location, size, and amenities.",
     image:
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
     icon: <Home size={24} className="text-white" />,
@@ -45,7 +55,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
   {
     title: "Phishing URL Detection",
     description:
-      "Classifies URLs as phishing or legitimate from structural and lexical features, reaching up to 96.9% accuracy with Random Forest, KNN, Logistic Regression, and Naive Bayes.",
+      "Classifies URLs as phishing or legitimate from structural and lexical features.",
     image:
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80",
     icon: <ShieldCheck size={24} className="text-white" />,
@@ -54,7 +64,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
   {
     title: "Cricket Document Similarity Search",
     description:
-      "Semantic search app that finds the most relevant document about a cricketer using text embeddings and natural language queries, orchestrated with LangChain.",
+      "Semantic search app that finds the most relevant document about a cricketer.",
     image:
       "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80",
     icon: <FileSearch size={24} className="text-white" />,

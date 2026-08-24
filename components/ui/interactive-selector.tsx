@@ -11,6 +11,8 @@ export type SelectorOption = {
   icon: React.ReactNode;
   /** Optional outbound link shown when the option is active. */
   href?: string;
+  /** How the image fills the card: cover (crop to fill, default) or contain (full image, no crop). */
+  imageFit?: "cover" | "contain";
 };
 
 type InteractiveSelectorProps = {
@@ -88,9 +90,6 @@ const InteractiveSelector = ({
                 isActive && "active"
               )}
               style={{
-                backgroundImage: `url('${option.image}')`,
-                backgroundSize: isActive ? "auto 100%" : "auto 120%",
-                backgroundPosition: "center",
                 backfaceVisibility: "hidden",
                 opacity: animatedOptions.includes(index) ? 1 : 0,
                 transform: animatedOptions.includes(index) ? "translateX(0)" : "translateX(-60px)",
@@ -106,10 +105,21 @@ const InteractiveSelector = ({
                 justifyContent: "flex-end",
                 position: "relative",
                 overflow: "hidden",
-                willChange: "flex-grow, box-shadow, background-size, background-position",
+                willChange: "flex-grow, box-shadow",
               }}
               onClick={() => handleOptionClick(index)}
             >
+              {/* Image layer */}
+              <img
+                src={option.image}
+                alt={option.title}
+                className="pointer-events-none absolute inset-0 h-full w-full transition-all duration-700 ease-in-out"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center center",
+                }}
+                draggable={false}
+              />
               {/* Theme-aware border overlay */}
               <div
                 className="pointer-events-none absolute inset-0 border-2 transition-all duration-700 ease-in-out"
