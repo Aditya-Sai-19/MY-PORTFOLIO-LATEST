@@ -2,7 +2,7 @@
 
 This repository contains a single-page personal portfolio application built with Next.js App Router, React, TypeScript, Tailwind CSS, GSAP, and Framer Motion.
 
-Live Demo: [aditya-sai-19-portfolio.vercel.app](https://aditya-sai-19-portfolio.vercel.app/)
+Live Demo: [aditya-sai.vercel.app](https://aditya-sai-19-portfolio.vercel.app/)
 
 ![Project Screenshot](./project-screenshot.png)
 
