@@ -32,7 +32,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
     image:
       "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
     icon: <BrainCircuit size={24} className="text-white" />,
-    href: SOCIAL_LINKS.github,
+    href: "https://github.com/Aditya-Sai-19/Fake-Review-Detection-Major-Project-",
   },
   {
     title: "IRIS Classification Model",
