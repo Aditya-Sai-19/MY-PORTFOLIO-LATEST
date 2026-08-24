@@ -1,85 +1,205 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, Download, Boxes, Instagram } from 'lucide-react';
-import { THEME, SOCIAL_LINKS } from '@/constants/theme';
+import * as React from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useReducedMotion } from "framer-motion";
+import {
+  ArrowUpRight,
+  Download,
+  Github,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Sparkles,
+} from "lucide-react";
+import { SITE, SOCIAL_LINKS } from "@/constants/theme";
+import { GlassButton, buttonVariants } from "@/components/ui/glass-button";
+import { Magnetic } from "@/components/ui/magnetic";
+import { GlassSurface } from "@/components/ui/glass-surface";
+import { cn } from "@/lib/utils";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const socials = [
+  { icon: Github, href: SOCIAL_LINKS.github, label: "GitHub" },
+  { icon: Linkedin, href: SOCIAL_LINKS.linkedin, label: "LinkedIn" },
+  { icon: Mail, href: SOCIAL_LINKS.email, label: "Email" },
+  { icon: Sparkles, href: SOCIAL_LINKS.huggingface, label: "Hugging Face" },
+  { icon: Instagram, href: SOCIAL_LINKS.instagram, label: "Instagram" },
+];
 
 export default function Hero() {
-  const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const fullText = "Kolapalli Aditya Sai";
+  const ref = React.useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    if (currentIndex < fullText.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + fullText[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, THEME.animation.typewriterSpeed);
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, fullText]);
+  useGSAP(
+    () => {
+      if (reduceMotion || !ref.current) return;
+      const root = ref.current;
 
-  const socialLinks = [
-    { icon: Github, href: SOCIAL_LINKS.github, label: 'GitHub' },
-    { icon: Linkedin, href: SOCIAL_LINKS.linkedin, label: 'LinkedIn' },
-    { icon: Mail, href: SOCIAL_LINKS.email, label: 'Email' },
-    { icon: Boxes, href: SOCIAL_LINKS.huggingface, label: 'Hugging Face' },
-    { icon: Instagram, href: SOCIAL_LINKS.instagram, label: 'Instagram' }
-  ];
+      // Hero entrance: soft, sequential, like light settling
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.fromTo(
+        root.querySelector(".hero-eyebrow"),
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        0.15
+      )
+        .fromTo(
+          root.querySelector(".hero-name"),
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.9 },
+          0.25
+        )
+        .fromTo(
+          root.querySelector(".hero-desc"),
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          0.45
+        )
+        .fromTo(
+          root.querySelector(".hero-cta"),
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.7 },
+          0.6
+        )
+        .fromTo(
+          root.querySelector(".hero-socials"),
+          { opacity: 0 },
+          { opacity: 1, duration: 0.7 },
+          0.72
+        )
+        .fromTo(
+          root.querySelector(".hero-glass"),
+          { opacity: 0, y: 28, scale: 0.96 },
+          { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: "power2.out" },
+          0.75
+        );
+
+      // Gentle idle float for the glass panel (starts after entrance settles)
+      gsap.to(root.querySelector(".hero-glass"), {
+        y: 8,
+        duration: 7,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        delay: 2.2,
+      });
+
+      // Scroll parallax: panel drifts up slightly as the hero leaves
+      gsap.to(root.querySelector(".hero-glass"), {
+        yPercent: -8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: root,
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.5,
+        },
+      });
+    },
+    { dependencies: [reduceMotion], scope: ref }
+  );
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative pt-20 px-6">
-      <div className="container mx-auto text-center relative z-10">
-        <div className="mb-8">
-          <div className="text-electric-cyan text-lg mb-4 font-mono" data-macaly="hero-greeting">
-            &gt; System.out.println(&quot;Hello, Universe!&quot;);
+    <section
+      id="hero"
+      ref={ref}
+      className="relative flex min-h-[100dvh] items-center overflow-hidden px-6 pt-24 pb-16 md:px-10"
+    >
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-16 lg:grid-cols-[1.35fr_0.65fr]">
+        {/* Copy */}
+        <div className="max-w-2xl">
+          <div className="hero-eyebrow">
+            <span className="eyebrow">
+              AI/ML Engineer · Robotics &amp; Cybersecurity
+            </span>
           </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-electric-cyan via-neon-purple to-cosmic-orange bg-clip-text text-transparent" data-macaly="hero-name">
-            {displayText}
-            <span className="animate-pulse">|</span>
+
+          <h1 className="hero-name display mt-8 text-[clamp(2.9rem,7.5vw,5.5rem)]">
+            Hi, I&apos;m Aditya{" "}
+            <em className="font-semibold italic text-accent">Sai.</em>
           </h1>
-          
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto" data-macaly="hero-tagline">
-            Robotics & Cybersecurity Enthusiast | AI/ML Engineer | Building the Future of Technology
+
+          <p className="hero-desc mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+            I build intelligent systems that connect the physical and digital
+            worlds, from secure infrastructure to robotic automation.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-            <button
-              className="bg-gradient-to-r from-electric-cyan to-neon-purple px-8 py-4 rounded-lg font-semibold text-white shadow-lg hover:shadow-electric-cyan/50 transition-all duration-300 transform hover:scale-105"
-              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-              data-macaly="hero-cta-projects"
+          <div className="hero-cta mt-10 flex flex-wrap items-center gap-4">
+            <Magnetic>
+              <GlassButton
+                size="lg"
+                onClick={() =>
+                  document
+                    .getElementById("work")
+                    ?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" })
+                }
+              >
+                View my work
+              </GlassButton>
+            </Magnetic>
+            <a
+              href={SITE.resume}
+              download={SITE.resumeFileName}
+              className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}
             >
-              🚀 Explore My Work
-            </button>
-
-            <button className="flex items-center space-x-2 border-2 border-electric-cyan px-8 py-4 rounded-lg font-semibold text-electric-cyan hover:bg-electric-cyan hover:text-space-blue transition-all duration-300" data-macaly="hero-cta-resume">
-              <Download className="w-5 h-5" />
-              <a href='/resume.pdf' download={"Kolapalli_Aditya_Sai_Resume.pdf"}>Download Resume</a>
-            </button>
+              <Download className="h-4 w-4" aria-hidden="true" />
+              Download resume
+            </a>
           </div>
 
-          <div className="flex justify-center space-x-6">
-            {socialLinks.map((link, index) => (
+          <div className="hero-socials mt-14 flex items-center gap-3">
+            {socials.map((social) => (
               <a
-                key={link.label}
-                href={link.href}
+                key={social.label}
+                href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:border-electric-cyan transition-all duration-300 hover:bg-electric-cyan/20"
-                data-macaly={`social-${link.label.toLowerCase()}`}
+                aria-label={social.label}
+                className="glass-subtle flex h-11 w-11 items-center justify-center rounded-full text-muted-foreground transition-all duration-300 ease-out-expo hover:-translate-y-0.5 hover:text-foreground"
               >
-                <link.icon className="w-6 h-6 text-white hover:text-electric-cyan transition-colors duration-300" />
+                <social.icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
               </a>
             ))}
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute  left-1/2 transform -translate-x-1/2">
-          <div className="w-6 h-10 border-2 border-electric-cyan rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-electric-cyan rounded-full mt-2 animate-bounce"></div>
-          </div>
+        {/* Floating glass identity panel */}
+        <div className="hero-glass hidden lg:block">
+          <GlassSurface
+            variant="elevated"
+            interactive
+            className="relative -rotate-2 rounded-surface-lg p-6"
+          >
+            <div className="flex items-start justify-between gap-6">
+              <div>
+                <p className="text-[15px] font-semibold tracking-tight text-foreground">
+                  {SITE.name}
+                </p>
+                <p className="mt-0.5 text-[13px] text-muted-foreground">
+                  AI/ML Engineer
+                </p>
+              </div>
+              <span className="glass-subtle flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground">
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} />
+              </span>
+            </div>
+
+            <div className="mt-6 space-y-2.5 border-t border-white/30 pt-5 dark:border-white/10">
+              <p className="flex items-center gap-2 text-[13px] text-muted-foreground">
+                <MapPin className="h-3.5 w-3.5 text-accent" strokeWidth={1.75} aria-hidden="true" />
+                {SITE.location}
+              </p>
+              <p className="flex items-center gap-2 text-[13px] text-muted-foreground">
+                <span className="h-2 w-2 rounded-full bg-accent/70" aria-hidden="true" />
+                Open to opportunities
+              </p>
+            </div>
+          </GlassSurface>
         </div>
       </div>
     </section>

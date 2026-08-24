@@ -1,122 +1,68 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ['class'],
+  darkMode: ["class"],
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'space-gradient': 'linear-gradient(135deg, #0a0a23 0%, #1a1a3a 50%, #0a0a23 100%)',
-        'cyber-gradient': 'linear-gradient(45deg, #00d4ff 0%, #9d4edd 50%, #ff6b35 100%)',
-      },
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))',
-        },
-        'space-blue': {
-          DEFAULT: '#0a0a23',
-          light: '#1a1a3a',
-        },
-        'electric-cyan': '#00d4ff',
-        'neon-purple': '#9d4edd',
-        'cosmic-orange': '#ff6b35',
-        'deep-space': '#000014',
-        'nebula-pink': '#ff006e',
-        'stellar-yellow': '#ffbe0b',
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
       },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'float': 'float 3s ease-in-out infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'scan': 'scan 2s linear infinite',
-        'typewriter': 'typewriter 3s steps(20) infinite',
-        'stars': 'stars 20s linear infinite',
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
-      keyframes: {
-        'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-        },
-        'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
-        },
-        'float': {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        'glow': {
-          'from': { boxShadow: '0 0 20px #00d4ff' },
-          'to': { boxShadow: '0 0 30px #9d4edd' },
-        },
-        'scan': {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(100%)' },
-        },
-        'typewriter': {
-          '0%': { width: '0%' },
-          '100%': { width: '100%' },
-        },
-        'stars': {
-          '0%': { transform: 'translateY(0px)' },
-          '100%': { transform: 'translateY(-2000px)' },
-        },
+      borderRadius: {
+        surface: "1.5rem",
+        "surface-lg": "2rem",
+        "surface-sm": "1rem",
+      },
+      boxShadow: {
+        // Liquid glass shadows: soft ambient, never hard
+        glass: "0 8px 32px -12px hsl(var(--glass-shadow)), inset 0 1px 0 hsl(var(--glass-highlight))",
+        "glass-sm": "0 4px 16px -8px hsl(var(--glass-shadow)), inset 0 1px 0 hsl(var(--glass-highlight))",
+        "glass-lg": "0 24px 64px -24px hsl(var(--glass-shadow)), inset 0 1px 0 hsl(var(--glass-highlight))",
+      },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.22, 1, 0.36, 1)",
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [],
 };
 export default config;

@@ -1,6 +1,6 @@
 # Personal Portfolio (Next.js)
 
-This repository contains a single-page personal portfolio application built with Next.js App Router, React, TypeScript, Tailwind CSS, and Framer Motion.
+This repository contains a single-page personal portfolio application built with Next.js App Router, React, TypeScript, Tailwind CSS, GSAP, and Framer Motion.
 
 Live Demo: [aditya-sai-19-portfolio.vercel.app](https://aditya-sai-19-portfolio.vercel.app/)
 
@@ -26,16 +26,20 @@ This is currently a **frontend-only portfolio site** with no backend services.
 
 Implemented functionality:
 
-- Full-page loader animation before content render
-- Animated starfield background canvas
-- Sticky header with section-based smooth scrolling
-- Hero section with typewriter-style name reveal and social links
-- About section with journey, vision, education, and work experience cards
-- Community section with leadership roles and organization cards
-- Projects section with project metadata, feature bullets, and external links
-- Skills section with animated progress bars, soft skills, and tools list
-- Certifications section with category badges and outbound certificate links
-- Contact section with a form that opens the user’s email client via `mailto`
+- Floating liquid-glass navigation pill with scroll-aware opacity, active-section tracking, theme toggle, and a clean mobile dropdown
+- Hero section with editorial left-aligned layout, a GSAP entrance timeline, and a floating liquid-glass identity panel
+- Asymmetric editorial project showcase with a dominant featured piece and a glass metadata panel floating over the image
+- About section with a dominant statement, typographic facts, and one floating glass surface
+- Experience/education timeline with glass markers
+- Skills organized into categories with glass chips (icons from skillicons.dev) plus translucent pills on an atmospheric band
+- Certifications as a scannable archive (compact rows, glass filters, hairline separators)
+- Community roles as editorial rows with organization logos
+- Testimonials section with a stagger-fan card layout featuring real photos, LinkedIn links, and full quotes from colleagues and clients
+- About section with a portrait profile photo beside the description
+- Contact section with giant display type and a single glass CTA over a luminous atmosphere
+- A recurring oversized-typography motif used on three sections for visual rhythm
+- Light/dark theme support (morning-light palette / nighttime glass + muted sage accent)
+- `prefers-reduced-motion` support
 
 Not currently implemented:
 
@@ -47,8 +51,10 @@ Not currently implemented:
 ## Tech Stack
 
 - Framework: `next` `^15.5.9` (App Router)
-- UI: `react` `^18.3.1`, `framer-motion`, `lucide-react`
-- Styling: `tailwindcss` + custom theme tokens
+- UI: `react` `^18.3.1`, `framer-motion`, `lucide-react`, `next-themes`
+- Animation: `gsap` + `@gsap/react` (primary), Framer Motion (small state transitions)
+- Styling: `tailwindcss` + custom design tokens (CSS variables, liquid-glass system)
+- Font: `Plus Jakarta Sans` (via `next/font`)
 - Language: TypeScript (`strict: true`)
 - Utilities: `clsx`, `tailwind-merge`
 - Deployment target: Vercel/static-friendly hosting
@@ -58,23 +64,25 @@ Not currently implemented:
 ```txt
 Portfolio/
 +-- app/
-|   +-- globals.css               # Global CSS variables + Tailwind layers
-|   +-- layout.tsx                # Root HTML shell + metadata + font
+|   +-- globals.css               # Design tokens (glass palette) + Tailwind layers + reduced motion
+|   +-- layout.tsx                # Root HTML shell + metadata + font + theme provider
 |   +-- page.tsx                  # Main single-page composition
 +-- components/
-|   +-- Header.tsx                # Top navigation and smooth-scroll logic
-|   +-- Hero.tsx                  # Intro, CTA, social links, resume download
-|   +-- About.tsx                 # About narrative + highlights + education/experience
-|   +-- Community.tsx             # Community leadership roles and organization highlights
-|   +-- Projects.tsx              # Project cards and external links
-|   +-- Skills.tsx                # Technical skills, soft skills, tools
-|   +-- Certifications.tsx        # Certification cards and stats
-|   +-- Contact.tsx               # Contact UI + mailto form flow
-|   +-- StarField.tsx             # Canvas-based animated background
-|   +-- Loader.tsx                # Intro loading animation
-|   +-- ui/                       # Shadcn/Radix-style reusable primitives
+|   +-- Atmosphere.tsx            # Fixed blurred color orbs (GSAP slow drift)
+|   +-- Navbar.tsx                # Floating liquid-glass pill navigation + theme toggle + mobile menu
+|   +-- Hero.tsx                  # Editorial hero with GSAP entrance + glass identity panel
+|   +-- Projects.tsx              # Asymmetric project showcase + glass metadata panel
+|   +-- About.tsx                 # Dominant statement + portrait profile photo + typographic facts + one glass surface
+|   +-- Experience.tsx            # Education/work timeline with glass markers
+|   +-- Skills.tsx                # Category rows + glass icon chips (skillicons.dev) + translucent pills
+|   +-- Certifications.tsx        # Scannable archive with glass filter pills
+|   +-- Community.tsx             # Editorial community role rows
+|   +-- Contact.tsx               # Closing statement + glass CTA over luminous atmosphere
+|   +-- Footer.tsx                # Minimal footer + glass back-to-top
+|   +-- theme-provider.tsx        # next-themes wrapper
+|   +-- ui/                       # Design-system primitives (incl. section-word, magnetic, stagger-testimonials) + unused shadcn components
 +-- constants/
-|   +-- theme.ts                  # Theme constants + social links
+|   +-- theme.ts                  # Site identity + social links
 +-- hooks/
 |   +-- use-toast.ts              # Toast state manager (currently not wired to page)
 +-- lib/
@@ -82,6 +90,10 @@ Portfolio/
 +-- public/
 |   +-- favicon.png
 |   +-- resume.pdf
+|   +-- hero-video.mp4            # Hero section background video
+|   +-- aditya-profile.jpeg       # About section profile photo
+|   +-- *.jpeg / *.jpg            # Community organization logos + testimonial photos
+|   +-- logos/                    # Skill/tool icons (SVG/PNG)
 +-- next.config.js
 +-- tailwind.config.ts
 +-- tsconfig.json
@@ -90,25 +102,27 @@ Portfolio/
 
 ## End-to-End Runtime Flow
 
-1. `app/layout.tsx` sets up global HTML, font, and metadata.
-2. `app/page.tsx` renders `<Loader />` first for `THEME.animation.loadingDelay` (2s).
-3. After loading, it renders the main page tree in this order:
-   - `StarField`
-   - `Header`
+1. `app/layout.tsx` sets up global HTML, font, metadata, and the `next-themes` provider.
+2. `app/page.tsx` renders the page tree in this order:
+   - `Navbar`
    - `Hero`
+   - `Projects` (work)
    - `About`
-   - `Community`
-   - `Projects`
+   - `Experience` (journey)
    - `Skills`
    - `Certifications`
+   - `Community`
    - `Contact`
-4. Navigation in `Header` scrolls to section IDs via `element.scrollIntoView({ behavior: 'smooth' })`.
-5. Contact form in `Contact` encodes form values and opens default mail client with a generated `mailto:` URL.
+   - `Footer`
+3. `Navbar` scrolls to section IDs via `element.scrollIntoView({ behavior: 'smooth' })` and tracks the active section with an `IntersectionObserver`.
+4. Scroll reveals use the GSAP-based `Reveal` primitive (ScrollTrigger), which disables itself under `prefers-reduced-motion`.
+5. Testimonials render in a stagger-fan card layout (`StaggerTestimonials`) with the center card highlighted and navigation arrows to browse.
 
 ## Configuration Notes
 
-- `constants/theme.ts` centralizes animation timing and social links used across components.
-- `tailwind.config.ts` defines custom colors (`electric-cyan`, `space-blue`, etc.) and keyframe animations.
+- `constants/theme.ts` centralizes site identity (`SITE`) and social links (`SOCIAL_LINKS`).
+- `tailwind.config.ts` maps design tokens from CSS variables (glass surfaces, shadows, accent) into Tailwind utilities.
+- `app/globals.css` defines the light/dark token sets and the `.glass` / `.glass-subtle` / `.glass-elevated` / `.orb` / `.display` / `.eyebrow` utility classes.
 - `next.config.js` currently sets:
   - `eslint.ignoreDuringBuilds: true`
   - `typescript.ignoreBuildErrors: true`
@@ -143,15 +157,8 @@ These settings are convenient for rapid iteration but reduce production build st
    npm run start
    ```
 
-## Environment Variables
-
-Current `.env.local` contains:
-
-```env
-NODE_ENV=development
-```
-
-No API keys or external service secrets are required in the current implementation.
+> Note: if your shell exports a non-standard `NODE_ENV` (e.g. `development`), run the build as
+> `NODE_ENV=production npm run build` — otherwise Next.js fails while prerendering error pages.
 
 ## Developer Scripts
 
@@ -166,7 +173,7 @@ Recommended first reading order:
 
 1. `app/page.tsx` (top-level composition)
 2. `constants/theme.ts` (global constants)
-3. All section components in `components/`
+3. The design-system primitives in `components/ui/`
 4. `tailwind.config.ts` + `app/globals.css`
 5. `ARCHITECTURE_OVERVIEW.md`
 6. `API_DEVELOPER_DOCS.md`
@@ -174,9 +181,9 @@ Recommended first reading order:
 Recommended first tasks:
 
 - Add one new section component and wire it in `app/page.tsx`
-- Add one new project card in `components/Projects.tsx`
+- Add one new project entry in `components/Projects.tsx`
 - Add one new certification entry in `components/Certifications.tsx`
-- Replace `mailto` contact flow with a real API endpoint (see API docs)
+- Replace the `mailto` CTA flow with a real API endpoint (see API docs)
 
 ## Deployment
 

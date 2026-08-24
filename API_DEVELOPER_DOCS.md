@@ -27,16 +27,16 @@ Only Next.js standard page route:
 
 - `GET /` -> renders portfolio single-page UI (`app/page.tsx`).
 
-### 1.2 Contact "Submission" Flow
+### 1.2 Contact Flow
 
-The contact form in `components/Contact.tsx` does not call an API.
+The contact section in `components/Contact.tsx` does not call an API.
 
 Current behavior:
 
-1. User fills fields: `name`, `email`, `subject`, `message`.
-2. `handleSubmit` builds a `mailto:` URL.
-3. Browser navigates to that URL (`window.location.href = mailtoLink`).
-4. User's default email client opens with pre-filled subject/body.
+1. Displays a "Let's talk" glass CTA button linking to `mailto:`.
+2. Shows social media links (GitHub, LinkedIn, etc.) from `SOCIAL_LINKS`.
+3. Browser navigates to the mailto URL on click.
+4. User's default email client opens.
 
 This means:
 
@@ -56,9 +56,11 @@ At present, the UI logic is entirely local/static and does not depend on runtime
 
 Even without backend APIs, there are important in-code data structures.
 
-### 2.1 Contact Form Payload (Client-Side)
+### 2.1 Contact Payload (Client-Side)
 
-Used in `components/Contact.tsx`:
+The contact section uses a simple `mailto:` CTA. No form payload exists currently.
+
+Future `POST /api/contact` payload (recommended):
 
 ```ts
 {
@@ -113,6 +115,30 @@ Used in `components/Community.tsx`:
   logo: string;
   logoAlt: string;
   logoScaleClass: string;
+}
+```
+
+### 2.5 Testimonial Model (Client-Side)
+
+Used in `app/page.tsx` (TESTIMONIALS array) and rendered by `components/ui/stagger-testimonials.tsx`:
+
+```ts
+// Input shape (in page.tsx)
+{
+  quote: string;        // Full testimonial text
+  name: string;         // Person's name
+  designation: string;  // Role and company
+  src: string;          // Photo URL or local path (e.g. "/Panindhra.jpg")
+  linkedin?: string;    // Optional LinkedIn profile URL
+}
+
+// Rendered shape (StaggerTestimonial)
+{
+  id: number;           // Array index
+  quote: string;
+  by: string;           // Formatted as "Name, Designation"
+  imgSrc: string;
+  linkedin?: string;
 }
 ```
 

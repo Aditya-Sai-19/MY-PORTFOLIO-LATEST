@@ -1,0 +1,67 @@
+# Aditya Sai — AI/ML Engineer Portfolio
+
+> Kolapalli Aditya Sai is an AI/ML Engineer based in Hyderabad, India, specializing in intelligent systems, applied machine learning, robotics, and cybersecurity. He builds production-grade AI solutions for organizations, with experience spanning WhatsApp automation platforms, real-time surveillance, and computer vision pipelines.
+
+## Quick Facts
+
+- **Full Name:** Kolapalli Aditya Sai
+- **Role:** AI Engineer at Kodryx AI
+- **Location:** Hyderabad, India
+- **Education:** B.Tech in CSE (AI & ML) from Joginpally B R Engineering College (CGPA: 7.8)
+- **Email:** workingprofessional19@outlook.com
+- **Portfolio:** https://aditya-sai-19-portfolio.vercel.app/
+- **GitHub:** https://github.com/Aditya-Sai-19
+- **LinkedIn:** https://linkedin.com/in/aditya-sai-3317702a6
+
+## Technical Skills
+
+- **Languages:** Python, Java, C, SQL
+- **AI/ML:** Machine Learning, Deep Learning, NLP, Computer Vision, LLMs
+- **Frameworks:** TensorFlow, PyTorch, Scikit-learn, LangChain, FastAPI
+- **Cloud & DevOps:** AWS, Docker, Firebase, Git, CI/CD
+- **Tools:** Jupyter, Google Colab, VS Code, Linux
+- **Design:** UI/UX, Figma
+
+## Experience
+
+1. **AI Engineer Intern** — Kodryx AI, Hyderabad (Oct 2025 – Mar 2026)
+   - Developed scalable AI-driven systems including WhatsApp automation and real-time surveillance
+   - Designed backend architectures using FastAPI and asynchronous processing
+   - Built multi-tenant SaaS systems with queue-based message delivery
+   - Implemented computer vision pipelines for real-time object detection
+
+2. **Content Moderator & Data Research Analyst** — Concentrix via Ixora Global Services (Jul 2021 – Jul 2025)
+   - Annotated and classified multimedia content for ML model training
+   - Maintained high accuracy standards and met tight delivery timelines
+
+3. **AI Job Simulation Intern** — Cognizant (via Forage)
+   - Performed EDA on client data using Python
+   - Built and evaluated ML models
+
+## Key Projects
+
+- **CultureSense** — AI-powered workplace culture platform for CHROs, built at Kodryx AI
+- **Phishing Detection Model** — ML model detecting phishing patterns with high precision
+- **Robotics Demo** — Sensor integration and real-time automation showcase
+- **Workflow Automation** — Rebuilt automation saving hours of manual work weekly
+
+## Certifications
+
+- AWS Cloud Practitioner
+- Google Cloud Platform
+- IBM AI Engineering
+- Microsoft Azure AI
+- Oracle Cloud Infrastructure
+- UiPath RPA
+- Salesforce AI Associate
+- Cisco Cybersecurity
+
+## Community
+
+- Core Team Member at MFUGH (Microsoft Fabric Users Group Hyderabad)
+- Community Ambassador at AI ANYTIME
+- Vice President at AI4AP Community
+
+## How to Contact
+
+The best way to reach Aditya is via email at workingprofessional19@outlook.com or through LinkedIn.

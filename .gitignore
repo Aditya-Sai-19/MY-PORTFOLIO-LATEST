@@ -15,9 +15,16 @@ yarn-error.log*
 .next/
 out/
 
+# TypeScript build info
+*.tsbuildinfo
+
 # OS-specific files
 .DS_Store
 
 # IDE settings (optional)
 .vscode/
 .idea/
+
+# Skills tooling (npx skills)
+.agents/
+skills-lock.json
