@@ -8,6 +8,7 @@ import {
   Home,
   ShieldCheck,
   MessageSquareText,
+  Workflow,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import InteractiveSelector, {
@@ -22,8 +23,14 @@ const PROJECT_OPTIONS: SelectorOption[] = [
       "AI-driven employee intelligence platform.",
     image: "/Culture Sense.jpeg",
     icon: <MessageSquareText size={24} className="text-white" />,
-    href: "#",
     imageFit: "contain",
+  },
+  {
+    title: "TANITA",
+    description:
+      "Automated report distribution engine using Playwright.",
+    image: "/TANITA.png",
+    icon: <Workflow size={24} className="text-white" />,
   },
   {
     title: "Fake Review Detection",
