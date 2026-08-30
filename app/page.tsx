@@ -66,13 +66,6 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "He mentored our AI club for a semester. The way he explains ML concepts makes them click instantly.",
-    name: "Neha Patel",
-    designation: "President, AI Student Chapter",
-    src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
-  },
-  {
-    quote:
       "I had the opportunity to work with Aditya and was genuinely impressed by his strong expertise in Generative AI. He has a solid understanding of modern AI technologies and demonstrates an excellent ability to explore and apply GenAI concepts to real-world problems. Aditya stands out for his curiosity, innovative mindset, and ability to understand complex AI concepts and turn them into practical solutions. His technical skills, problem-solving approach, and enthusiasm for emerging GenAI technologies make him a valuable addition to any team. I would highly recommend Aditya for building innovative AI-driven solutions.",
     name: "Jayant Verma",
     designation: "Senior Software Engineer at Capgemini",
@@ -88,7 +81,7 @@ const TESTIMONIALS = [
     src: "/Panindhra.jpg",
     linkedin: "https://www.linkedin.com/in/panindhra/",
   },
-  // Center (index 9 = position 0)
+  // Center (index 8 = position 0)
   {
     quote:
       "CultureSense, a cockpit for CHROs for Culture, one of a kind product in Workplace Culture space was passionately designed and created by Aditya, Tejaswi and his team from KodryxAI. The special part is his passion towards technology and building things in AI for Organizations which will make an impact in people's lives.",
