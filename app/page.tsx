@@ -71,6 +71,14 @@ const TESTIMONIALS = [
     designation: "President, AI Student Chapter",
     src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
   },
+  {
+    quote:
+      "I had the opportunity to work with Aditya and was genuinely impressed by his strong expertise in Generative AI. He has a solid understanding of modern AI technologies and demonstrates an excellent ability to explore and apply GenAI concepts to real-world problems. Aditya stands out for his curiosity, innovative mindset, and ability to understand complex AI concepts and turn them into practical solutions. His technical skills, problem-solving approach, and enthusiasm for emerging GenAI technologies make him a valuable addition to any team. I would highly recommend Aditya for building innovative AI-driven solutions.",
+    name: "Jayant Verma",
+    designation: "Senior Software Engineer at Capgemini",
+    src: "/JayantVerma.jpeg",
+    linkedin: "https://www.linkedin.com/in/jayant-verma-13062001/",
+  },
   // Position -1 (immediate left of center)
   {
     quote:
