@@ -231,10 +231,13 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
 type StaggerTestimonialsProps = {
   testimonials?: StaggerTestimonial[];
+  /** Index of the testimonial that should appear centered by default. */
+  initialCenter?: number;
 };
 
 export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({
   testimonials = defaultTestimonials,
+  initialCenter,
 }) => {
   const [cardSize, setCardSize] = useState(400);
   const [list, setList] = useState<StaggerTestimonial[]>(() =>
@@ -271,12 +274,16 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
+  const centerOffset = initialCenter !== undefined
+    ? initialCenter - (list.length + 1) / 2
+    : 0;
+
   return (
     <div className="relative w-full overflow-hidden bg-muted/30" style={{ height: 780 }}>
       {list.map((testimonial, index) => {
         const position = list.length % 2
-          ? index - (list.length + 1) / 2
-          : index - list.length / 2;
+          ? index - (list.length + 1) / 2 - centerOffset
+          : index - list.length / 2 - centerOffset;
         return (
           <TestimonialCard
             key={testimonial.id}

@@ -14,56 +14,57 @@ import { StaggerTestimonials } from "@/components/ui/stagger-testimonials";
 import Footer from "@/components/Footer";
 
 const TESTIMONIALS = [
-  // Left side (far to near center)
-  {
-    quote:
-      "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
-    name: "Sarah Chen",
-    designation: "Product Manager at TechFlow",
-    src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote:
-      "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
-    name: "Michael Rodriguez",
-    designation: "CTO at InnovateSphere",
-    src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote:
-      "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-    name: "Emily Watson",
-    designation: "Operations Director at CloudScale",
-    src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote:
-      "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-    name: "James Kim",
-    designation: "Engineering Lead at DataPro",
-    src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote:
-      "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
-    name: "Lisa Thompson",
-    designation: "VP of Technology at FutureNet",
-    src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    quote:
-      "Aditya's phishing detection model caught patterns our team had been missing for months. The precision is genuinely impressive.",
-    name: "Priya Sharma",
-    designation: "Security Engineer at NetShield",
-    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80",
-  },
-  {
-    quote:
-      "He led the robotics demo at our campus showcase — the sensor integration was flawless and the crowd loved every second.",
-    name: "Rahul Verma",
-    designation: "Organizer at TechFest",
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80",
-  },
+  // --- Dummy testimonials (commented out) ---
+  // {
+  //   quote:
+  //     "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
+  //   name: "Sarah Chen",
+  //   designation: "Product Manager at TechFlow",
+  //   src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  // },
+  // {
+  //   quote:
+  //     "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
+  //   name: "Michael Rodriguez",
+  //   designation: "CTO at InnovateSphere",
+  //   src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  // },
+  // {
+  //   quote:
+  //     "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
+  //   name: "Emily Watson",
+  //   designation: "Operations Director at CloudScale",
+  //   src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  // },
+  // {
+  //   quote:
+  //     "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
+  //   name: "James Kim",
+  //   designation: "Engineering Lead at DataPro",
+  //   src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  // },
+  // {
+  //   quote:
+  //     "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
+  //   name: "Lisa Thompson",
+  //   designation: "VP of Technology at FutureNet",
+  //   src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  // },
+  // {
+  //   quote:
+  //     "Aditya's phishing detection model caught patterns our team had been missing for months. The precision is genuinely impressive.",
+  //   name: "Priya Sharma",
+  //   designation: "Security Engineer at NetShield",
+  //   src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80",
+  // },
+  // {
+  //   quote:
+  //     "He led the robotics demo at our campus showcase — the sensor integration was flawless and the crowd loved every second.",
+  //   name: "Rahul Verma",
+  //   designation: "Organizer at TechFest",
+  //   src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80",
+  // },
+  // --- End dummy testimonials ---
   {
     quote:
       "I had the opportunity to work with Aditya and was genuinely impressed by his strong expertise in Generative AI. He has a solid understanding of modern AI technologies and demonstrates an excellent ability to explore and apply GenAI concepts to real-world problems. Aditya stands out for his curiosity, innovative mindset, and ability to understand complex AI concepts and turn them into practical solutions. His technical skills, problem-solving approach, and enthusiasm for emerging GenAI technologies make him a valuable addition to any team. I would highly recommend Aditya for building innovative AI-driven solutions.",
@@ -123,27 +124,29 @@ const TESTIMONIALS = [
     src: "/RaajMeesa.jpg",
     linkedin: "https://www.linkedin.com/in/raajmeesa/",
   },
-  {
-    quote:
-      "A genuinely curious engineer — he goes deep into the why, not just the how.",
-    name: "Sofia Martinez",
-    designation: "Data Scientist at InsightLab",
-    src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80",
-  },
-  {
-    quote:
-      "He rebuilt our workflow automation and it freed up hours of manual work every single week.",
-    name: "Marcus Lee",
-    designation: "Operations Lead at FinFlow",
-    src: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80",
-  },
-  {
-    quote:
-      "Delivered ahead of schedule with spotless documentation. That combination is rare.",
-    name: "Ananya Rao",
-    designation: "Project Manager at CloudNova",
-    src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=500&q=80",
-  },
+  // --- Dummy testimonials (commented out) ---
+  // {
+  //   quote:
+  //     "A genuinely curious engineer — he goes deep into the why, not just the how.",
+  //   name: "Sofia Martinez",
+  //   designation: "Data Scientist at InsightLab",
+  //   src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80",
+  // },
+  // {
+  //   quote:
+  //     "He rebuilt our workflow automation and it freed up hours of manual work every single week.",
+  //   name: "Marcus Lee",
+  //   designation: "Operations Lead at FinFlow",
+  //   src: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80",
+  // },
+  // {
+  //   quote:
+  //     "Delivered ahead of schedule with spotless documentation. That combination is rare.",
+  //   name: "Ananya Rao",
+  //   designation: "Project Manager at CloudNova",
+  //   src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=500&q=80",
+  // },
+  // --- End dummy testimonials ---
 ];
 
 export default function Home() {
@@ -354,6 +357,7 @@ export default function Home() {
                 imgSrc: t.src,
                 linkedin: (t as any).linkedin,
               }))}
+              initialCenter={2}
             />
           </div>
         </section>
