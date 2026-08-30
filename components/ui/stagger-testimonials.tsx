@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -137,14 +137,17 @@ const defaultTestimonials: StaggerTestimonial[] = [
   },
 ];
 
-interface TestimonialCardProps {
+/* ------------------------------------------------------------------ */
+/*  Desktop – Stagger fan (original layout)                            */
+/* ------------------------------------------------------------------ */
+interface DesktopCardProps {
   position: number;
   testimonial: StaggerTestimonial;
   handleMove: (steps: number) => void;
   cardSize: number;
 }
 
-const TestimonialCard: React.FC<TestimonialCardProps> = ({
+const DesktopCard: React.FC<DesktopCardProps> = ({
   position,
   testimonial,
   handleMove,
@@ -171,32 +174,27 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           translateY(${isCenter ? -72 : position % 2 ? 22 : -22}px)
           rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
         `,
-        boxShadow: isCenter ? "0px 8px 0px 4px hsl(var(--border))" : "0px 0px 0px 0px transparent",
+        boxShadow: isCenter
+          ? "0px 8px 0px 4px hsl(var(--border))"
+          : "0px 0px 0px 0px transparent",
       }}
     >
       <span
         className="absolute block origin-top-right rotate-45 bg-border"
-        style={{
-          right: -2,
-          top: 48,
-          width: SQRT_5000,
-          height: 2,
-        }}
+        style={{ right: -2, top: 48, width: SQRT_5000, height: 2 }}
       />
       <img
         src={testimonial.imgSrc}
-        alt={`${testimonial.by.split(",")[0]}`}
+        alt={testimonial.by.split(",")[0]}
         className="mb-4 h-14 w-12 bg-muted object-cover object-top"
-        style={{
-          boxShadow: "3px 3px 0px hsl(var(--background))",
-        }}
+        style={{ boxShadow: "3px 3px 0px hsl(var(--background))" }}
       />
       <h3
         className={cn(
           "font-medium leading-relaxed",
           isCenter ? "text-primary-foreground" : "text-foreground"
         )}
-        style={{ fontSize: 'clamp(0.75rem, 1.4vw, 0.9rem)' }}
+        style={{ fontSize: "clamp(0.75rem, 1.4vw, 0.9rem)" }}
       >
         &ldquo;{testimonial.quote}&rdquo;
       </h3>
@@ -229,6 +227,55 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   );
 };
 
+/* ------------------------------------------------------------------ */
+/*  Mobile – single card carousel                                      */
+/* ------------------------------------------------------------------ */
+const MobileTestimonialCard: React.FC<{
+  testimonial: StaggerTestimonial;
+}> = ({ testimonial }) => (
+  <div className="relative mx-auto w-full max-w-sm rounded-2xl border-2 border-primary bg-primary p-6 text-primary-foreground shadow-lg">
+    {/* Decorative corner */}
+    <span
+      className="absolute block origin-top-right rotate-45 bg-primary-foreground/20"
+      style={{ right: -2, top: 48, width: SQRT_5000, height: 2 }}
+    />
+
+    <img
+      src={testimonial.imgSrc}
+      alt={testimonial.by.split(",")[0]}
+      className="mb-4 h-14 w-12 bg-primary-foreground/10 object-cover object-top"
+      style={{ boxShadow: "3px 3px 0px hsl(var(--background))" }}
+    />
+
+    <h3
+      className="mb-6 font-medium leading-relaxed text-primary-foreground"
+      style={{ fontSize: "clamp(0.85rem, 4vw, 1rem)" }}
+    >
+      &ldquo;{testimonial.quote}&rdquo;
+    </h3>
+
+    <div className="flex items-center justify-between">
+      <p className="text-sm italic text-primary-foreground/80">
+        - {testimonial.by}
+      </p>
+      {testimonial.linkedin && (
+        <a
+          href={testimonial.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+          aria-label={`${testimonial.by.split(",")[0]} on LinkedIn`}
+        >
+          <Linkedin className="h-4 w-4" />
+        </a>
+      )}
+    </div>
+  </div>
+);
+
+/* ------------------------------------------------------------------ */
+/*  Main component                                                     */
+/* ------------------------------------------------------------------ */
 type StaggerTestimonialsProps = {
   testimonials?: StaggerTestimonial[];
   /** Index of the testimonial that should appear centered by default. */
@@ -240,52 +287,135 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({
   initialCenter,
 }) => {
   const [cardSize, setCardSize] = useState(400);
+  const [isMobile, setIsMobile] = useState(false);
+
+  /* Ordered list for desktop stagger fan */
   const [list, setList] = useState<StaggerTestimonial[]>(() =>
     testimonials.map((t, i) => ({ ...t, id: t.id ?? i }))
   );
 
-  const handleMove = (steps: number) => {
-    const newList = [...list];
-    if (steps > 0) {
-      for (let i = steps; i > 0; i--) {
-        const item = newList.shift();
-        if (!item) return;
-        newList.push({ ...item, id: Math.random() });
-      }
-    } else {
-      for (let i = steps; i < 0; i++) {
-        const item = newList.pop();
-        if (!item) return;
-        newList.unshift({ ...item, id: Math.random() });
-      }
-    }
-    setList(newList);
-  };
+  /* Active index for mobile carousel */
+  const [activeIdx, setActiveIdx] = useState(
+    initialCenter ?? Math.floor(testimonials.length / 2)
+  );
 
+  const handleMove = useCallback(
+    (steps: number) => {
+      setList((prev) => {
+        const next = [...prev];
+        if (steps > 0) {
+          for (let i = steps; i > 0; i--) {
+            const item = next.shift();
+            if (!item) return prev;
+            next.push({ ...item, id: Math.random() });
+          }
+        } else {
+          for (let i = steps; i < 0; i++) {
+            const item = next.pop();
+            if (!item) return prev;
+            next.unshift({ ...item, id: Math.random() });
+          }
+        }
+        return next;
+      });
+    },
+    []
+  );
+
+  const goPrev = useCallback(() => {
+    setActiveIdx((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  }, [testimonials.length]);
+
+  const goNext = useCallback(() => {
+    setActiveIdx((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
+  }, [testimonials.length]);
+
+  /* Responsive breakpoint */
   useEffect(() => {
-    const updateSize = () => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    setIsMobile(mq.matches);
+
+    const onBreakpoint = () => {
       const { matches: isLg } = window.matchMedia("(min-width: 1024px)");
       const { matches: isSm } = window.matchMedia("(min-width: 640px)");
       setCardSize(isLg ? 460 : isSm ? 380 : 320);
     };
 
-    updateSize();
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
+    onBreakpoint();
+    mq.addEventListener("change", () => setIsMobile(mq.matches));
+    window.addEventListener("resize", onBreakpoint);
+    return () => {
+      mq.removeEventListener("change", () => setIsMobile(mq.matches));
+      window.removeEventListener("resize", onBreakpoint);
+    };
   }, []);
 
-  const centerOffset = initialCenter !== undefined
-    ? initialCenter - (list.length + 1) / 2
-    : 0;
+  /* ---- Mobile layout ---- */
+  if (isMobile) {
+    return (
+      <div className="relative w-full overflow-hidden bg-muted/30 px-4 py-6">
+        <MobileTestimonialCard testimonial={testimonials[activeIdx]} />
+
+        {/* Navigation */}
+        <div className="mt-6 flex items-center justify-center gap-3">
+          <button
+            onClick={goPrev}
+            className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-border bg-background transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+
+          {/* Pagination dots */}
+          <div className="flex items-center gap-1.5">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIdx(i)}
+                className={cn(
+                  "h-2 rounded-full transition-all duration-300",
+                  i === activeIdx
+                    ? "w-6 bg-primary"
+                    : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                )}
+                aria-label={`Go to testimonial ${i + 1}`}
+                aria-current={i === activeIdx ? "true" : undefined}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={goNext}
+            className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-border bg-background transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  /* ---- Desktop layout ---- */
+  const centerOffset =
+    initialCenter !== undefined
+      ? initialCenter - Math.floor(list.length / 2)
+      : 0;
 
   return (
-    <div className="relative w-full overflow-hidden bg-muted/30" style={{ height: 780 }}>
+    <div
+      className="relative w-full overflow-hidden bg-muted/30"
+      style={{ height: 780 }}
+    >
       {list.map((testimonial, index) => {
-        const position = list.length % 2
-          ? index - (list.length + 1) / 2 - centerOffset
-          : index - list.length / 2 - centerOffset;
+        const position =
+          index - Math.floor(list.length / 2) - centerOffset;
         return (
-          <TestimonialCard
+          <DesktopCard
             key={testimonial.id}
             testimonial={testimonial}
             handleMove={handleMove}

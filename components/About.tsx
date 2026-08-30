@@ -53,14 +53,14 @@ export default function About() {
                 and smart automation.
               </p>
             </div>
-            <div className="hidden shrink-0 md:block">
+            <div className="flex shrink-0 justify-center md:justify-start">
               <div className="glass-elevated overflow-hidden rounded-2xl p-1">
                 <Image
                   src="/aditya-profile.jpeg"
                   alt="Aditya Sai profile photo"
-                  width={220}
-                  height={280}
-                  className="rounded-xl object-cover object-top"
+                  width={180}
+                  height={230}
+                  className="h-[230px] w-[180px] rounded-xl object-cover object-top md:h-[280px] md:w-[220px]"
                 />
               </div>
             </div>

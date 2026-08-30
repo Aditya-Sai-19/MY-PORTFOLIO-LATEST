@@ -22,7 +22,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
     description:
       "AI-driven employee intelligence platform.",
     image: "/Culture Sense.jpeg",
-    icon: <MessageSquareText size={24} className="text-white" />,
+    icon: <MessageSquareText size={24} className="text-current" />,
     imageFit: "contain",
   },
   {
@@ -30,7 +30,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
     description:
       "Automated report distribution engine using Playwright.",
     image: "/TANITA.png",
-    icon: <Workflow size={24} className="text-white" />,
+    icon: <Workflow size={24} className="text-current" />,
   },
   {
     title: "Fake Review Detection",
@@ -38,7 +38,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
       "A Flask-based web app that detects fake Amazon food reviews.",
     image:
       "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
-    icon: <BrainCircuit size={24} className="text-white" />,
+    icon: <BrainCircuit size={24} className="text-current" />,
     href: "https://github.com/Aditya-Sai-19/Fake-Review-Detection-Major-Project-",
   },
   {
@@ -47,7 +47,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
       "Supervised learning model that classifies iris flower species.",
     image:
       "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80",
-    icon: <Flower2 size={24} className="text-white" />,
+    icon: <Flower2 size={24} className="text-current" />,
     href: "https://huggingface.co/spaces/Aditya-Sai-19/iris-classification-app",
   },
   {
@@ -56,7 +56,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
       "Regression model predicting housing prices from location, size, and amenities.",
     image:
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
-    icon: <Home size={24} className="text-white" />,
+    icon: <Home size={24} className="text-current" />,
     href: "https://huggingface.co/spaces/Aditya-Sai-19/House_Price_Predictor",
   },
   {
@@ -65,7 +65,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
       "Classifies URLs as phishing or legitimate from structural and lexical features.",
     image:
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80",
-    icon: <ShieldCheck size={24} className="text-white" />,
+    icon: <ShieldCheck size={24} className="text-current" />,
     href: "https://huggingface.co/spaces/Aditya-Sai-19/PHISHING-URL-DETECTION",
   },
   {
@@ -74,7 +74,7 @@ const PROJECT_OPTIONS: SelectorOption[] = [
       "Semantic search app that finds the most relevant document about a cricketer.",
     image:
       "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80",
-    icon: <FileSearch size={24} className="text-white" />,
+    icon: <FileSearch size={24} className="text-current" />,
     href: "https://huggingface.co/spaces/Aditya-Sai-19/cricket_similarity_search",
   },
 ];

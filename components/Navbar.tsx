@@ -133,13 +133,14 @@ export default function Navbar() {
     <AnimatePresence>
       {inFooter ? (
         /* ---- Vertical rail on the right edge (motion footer section only) ---- */
+        /* Hidden on mobile to avoid clutter */
         <motion.div
           key="nav-side"
           initial={{ opacity: 0, x: 56, y: 0 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           exit={{ opacity: 0, x: 40 }}
           transition={{ duration: reduceMotion ? 0 : 0.55, ease: EASE }}
-          className="pointer-events-none fixed inset-0 z-50 flex items-center justify-end px-4 md:px-6"
+          className="pointer-events-none fixed inset-0 z-50 hidden items-center justify-end px-4 md:flex md:px-6"
         >
           <nav
             className="glass pointer-events-auto flex w-auto flex-col items-center gap-1.5 rounded-[2rem] p-2.5 shadow-glass-lg"
@@ -171,7 +172,7 @@ export default function Navbar() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
             className={cn(
-              "glass mx-auto flex max-w-4xl items-center justify-between rounded-full pl-2 pr-2 transition-all duration-300 ease-out-expo md:pl-3",
+              "glass mx-auto flex w-fit items-center justify-between rounded-full pl-2 pr-2 transition-all duration-300 ease-out-expo md:w-auto md:max-w-4xl md:pl-3",
               scrolled
                 ? "scale-[0.98] bg-white/60 py-1.5 shadow-glass-lg dark:bg-[#101514]/60"
                 : "py-2"
