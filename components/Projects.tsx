@@ -92,7 +92,7 @@ export default function Projects() {
               <span className="text-muted-foreground">carefully.</span>
             </>
           }
-          description="Machine learning, deep learning, and applied AI — from classification models to deployed semantic search apps."
+          description="AI platforms, workflow automation, deep learning models, and semantic search from NLP pipelines to production-grade intelligent systems."
         />
       </div>
 
