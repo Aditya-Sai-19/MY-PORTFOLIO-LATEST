@@ -6,6 +6,7 @@ import {
   FileSearch,
   Flower2,
   Home,
+  MessageCircle,
   ShieldCheck,
   MessageSquareText,
   Workflow,
@@ -23,6 +24,14 @@ const PROJECT_OPTIONS: SelectorOption[] = [
       "AI-driven employee intelligence platform.",
     image: "/Culture Sense.jpeg",
     icon: <MessageSquareText size={24} className="text-current" />,
+    imageFit: "contain",
+  },
+  {
+    title: "Wappflow",
+    description:
+      "WhatsApp marketing platform with bulk campaign orchestration.",
+    image: "/Wappflow UI.jpg",
+    icon: <MessageCircle size={24} className="text-current" />,
     imageFit: "contain",
   },
   {
