@@ -33,10 +33,11 @@ The contact section in `components/Contact.tsx` does not call an API.
 
 Current behavior:
 
-1. Displays a "Let's talk" glass CTA button linking to `mailto:`.
-2. Shows social media links (GitHub, LinkedIn, etc.) from `SOCIAL_LINKS`.
-3. Browser navigates to the mailto URL on click.
-4. User's default email client opens.
+1. Displays a "Let's talk" primary glass CTA button (using `buttonVariants` from `components/ui/glass-button.tsx`) linking to `mailto:`.
+2. Shows social media links (GitHub, LinkedIn, Hugging Face, Instagram, Email) from `SOCIAL_LINKS`.
+3. Shows location metadata from `SITE.location`.
+4. Browser navigates to the mailto URL on click.
+5. User's default email client opens.
 
 This means:
 
@@ -44,7 +45,17 @@ This means:
 - No server-side validation is performed.
 - Success indicates email client was triggered, not that message was delivered.
 
-### 1.3 Environment Variables and Secrets
+### 1.3 Structured Data (SEO/AEO)
+
+`app/page.tsx` includes three JSON-LD structured data scripts:
+
+1. **WebSite schema** — describes the portfolio site with name, URL, description, and author.
+2. **Person schema** — detailed profile of Kolapalli Aditya Sai including job title, description, address, employer (Kodryx AI), education, skills (`knowsAbout`), and social links (`sameAs`).
+3. **FAQPage schema** — five Q&A entries covering who Aditya is, what he does at Kodryx AI, his technical skills, notable projects, and contact information.
+
+These are rendered as inline `<script type="application/ld+json">` tags in `page.tsx` and are consumed by search engines and AI-powered answer engines.
+
+### 1.4 Environment Variables and Secrets
 
 No API keys or third-party API secrets are required by the current implementation.
 
@@ -96,11 +107,21 @@ Used in `components/Certifications.tsx`:
   name: string;
   platform: string;
   date: string;
-  category: 'AI/ML' | 'Cybersecurity' | 'Robotics' | 'Design' | 'Marketing' | 'AI/Cloud';
-  color: string;
+  category: string;
   description: string;
   link: string;
+  preview?: string;  // Local certificate image (public/certificates/*)
 }
+```
+
+The gallery also uses a `LABELS` record to provide short, scannable labels for the 3D gallery cards:
+
+```ts
+const LABELS: Record<string, string> = {
+  "Introduction to Agent Skills": "Agent Skills",
+  "Claude Code in Action": "Claude Code",
+  // ... more mappings
+};
 ```
 
 ### 2.4 Community Role Model (Client-Side)
@@ -114,9 +135,10 @@ Used in `components/Community.tsx`:
   description: string;
   logo: string;
   logoAlt: string;
-  logoScaleClass: string;
 }
 ```
+
+Note: `logoScaleClass` was removed in the current version.
 
 ### 2.5 Testimonial Model (Client-Side)
 
@@ -128,7 +150,7 @@ Used in `app/page.tsx` (TESTIMONIALS array) and rendered by `components/ui/stagg
   quote: string;        // Full testimonial text
   name: string;         // Person's name
   designation: string;  // Role and company
-  src: string;          // Photo URL or local path (e.g. "/Panindhra.jpg")
+  src: string;          // Photo URL or local path (e.g. "/JayantVerma.jpeg")
   linkedin?: string;    // Optional LinkedIn profile URL
 }
 
@@ -140,6 +162,34 @@ Used in `app/page.tsx` (TESTIMONIALS array) and rendered by `components/ui/stagg
   imgSrc: string;
   linkedin?: string;
 }
+```
+
+### 2.6 Journey/Experience Model (Client-Side)
+
+Used inline in `app/page.tsx` as features for the `HowItWorks` component:
+
+```ts
+{
+  title: string;        // e.g. "AI Engineer Intern"
+  description: string;  // Multi-line text with company, dates, and responsibilities
+  colorTheme: "orange" | "blue" | "purple";
+}
+```
+
+### 2.7 Navigation Items (Client-Side)
+
+Defined in `constants/theme.ts`:
+
+```ts
+const NAV_ITEMS = [
+  { id: "work", label: "Work" },
+  { id: "about", label: "About" },
+  { id: "journey", label: "Journey" },
+  { id: "skills", label: "Skills" },
+  { id: "community", label: "Community" },
+  { id: "testimonials", label: "Testimonials" },
+  { id: "contact", label: "Contact" },
+] as const;
 ```
 
 ---
