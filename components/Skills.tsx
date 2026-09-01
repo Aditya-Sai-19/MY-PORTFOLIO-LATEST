@@ -17,6 +17,7 @@ import {
   Radar,
   ShieldAlert,
   ShieldCheck,
+  FlaskConical,
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
@@ -114,6 +115,25 @@ const ICON_LOGOS: Record<
   OpenClaw: { src: "/logos/openclaw.svg" },
   Hermes: { src: "/logos/hermes.png" },
   MySQL: { src: "/logos/mysql.svg" },
+  pip: { src: "/logos/pip.svg" },
+  UV: { src: "/logos/uv.svg" },
+  OpenCV: { src: "/logos/opencv.svg" },
+  "C#": { src: "/logos/csharp.svg" },
+  Pydantic: { src: "/logos/pydantic.svg", invertOnLight: true },
+  Chatfuel: { src: "/logos/chatfuel.png" },
+  Supabase: { src: "/logos/supabase.svg" },
+  SQLAlchemy: { src: "/logos/sqlalchemy.svg" },
+  OpenCode: { src: "/logos/opencode.png" },
+  Antigravity: { src: "/logos/antigravity.png" },
+  Ollama: { src: "/logos/ollama.png" },
+  "llama.cpp": { src: "/logos/llamacpp.svg" },
+  Ubuntu: { src: "/logos/ubuntu.svg" },
+  "Kali Linux": { src: "/logos/kalilinux.svg" },
+  Metasploit: { src: "/logos/metasploit-light.svg", darkSrc: "/logos/metasploit-dark.svg" },
+  Nmap: { src: "/logos/nmap.png" },
+  Wireshark: { src: "/logos/wireshark-light.svg", darkSrc: "/logos/wireshark-dark.svg" },
+  Cline: { src: "/logos/cline.svg" },
+  Freebuff: { src: "/logos/freebuff.png" },
 };
 
 /**
@@ -132,24 +152,29 @@ const ICON_LUCIDE: Record<string, LucideIcon> = {
   "Network Security": ShieldCheck,
   "Threat Analysis": ShieldAlert,
   GDB: Bug,
+  Alembic: FlaskConical,
 };
 
 const categories = [
   {
     label: "Development",
-    skills: ["Python", "Java (OOP)", "C", "SQL", "Git"],
+    skills: ["Python", "Java (OOP)", "C", "C#", "SQL", "Git"],
   },
   {
     label: "AI & Data Science",
-    skills: ["Machine Learning", "Artificial Intelligence", "Deep Learning", "Data Analysis"],
+    skills: ["Machine Learning", "Artificial Intelligence", "Deep Learning", "Data Analysis", "OpenCV"],
   },
   {
     label: "AI Agents",
     skills: ["Hermes", "OpenClaw"],
   },
   {
+    label: "Agent Driven Development",
+    skills: ["Claude Code", "OpenCode", "Antigravity", "Cline", "Freebuff"],
+  },
+  {
     label: "Databases",
-    skills: ["PostgreSQL", "Redis", "MySQL", "NeonDB", "Qdrant"],
+    skills: ["PostgreSQL", "Redis", "MySQL", "NeonDB", "Qdrant", "Supabase", "SQLAlchemy", "Alembic"],
   },
   {
     label: "Robotics & Hardware",
@@ -157,7 +182,7 @@ const categories = [
   },
   {
     label: "Cybersecurity",
-    skills: ["Ethical Hacking", "Data Encryption", "Network Security", "Threat Analysis"],
+    skills: ["Ethical Hacking", "Data Encryption", "Network Security", "Threat Analysis", "Ubuntu", "Kali Linux", "Metasploit", "Nmap", "Wireshark"],
   },
 ];
 
@@ -175,6 +200,11 @@ const tools = [
   "Streamlit",
   "GDB",
   "GCC",
+  "pip",
+  "UV",
+  "Pydantic",
+  "Ollama",
+  "llama.cpp",
 ];
 
 const platforms = [
@@ -190,8 +220,8 @@ const platforms = [
   "Jira",
   "Firebase",
   "GitHub",
-  "Claude Code",
   "MinIO",
+  "Chatfuel",
 ];
 
 /** Glass tile with a skillicons.dev icon, official brand logo, or lucide
