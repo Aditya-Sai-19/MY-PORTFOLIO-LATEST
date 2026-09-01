@@ -70,6 +70,9 @@ const ICON_SLUGS: Record<string, string> = {
   "Azure Cognitive Services": "azure",
   // Cybersecurity: Kali Linux is the standard ethical-hacking platform.
   "Ethical Hacking": "kali",
+  PostgreSQL: "postgresql",
+  Redis: "redis",
+  MySQL: "mysql",
 };
 
 /**
@@ -105,6 +108,12 @@ const ICON_LOGOS: Record<
   Firebase: { src: "/logos/firebase.png" },
   GitHub: { src: "/logos/github.png", invertOnDark: true },
   "Claude Code": { src: "/logos/claude.png" },
+  NeonDB: { src: "/logos/neon.svg" },
+  Qdrant: { src: "/logos/qdrant.svg", invertOnDark: true },
+  Git: { src: "/logos/git.svg" },
+  MinIO: { src: "/logos/minio.svg", invertOnDark: true },
+  OpenClaw: { src: "/logos/openclaw.svg" },
+  Hermes: { src: "/logos/hermes.png" },
 };
 
 /**
@@ -128,11 +137,19 @@ const ICON_LUCIDE: Record<string, LucideIcon> = {
 const categories = [
   {
     label: "Development",
-    skills: ["Python", "Java (OOP)", "C", "SQL"],
+    skills: ["Python", "Java (OOP)", "C", "SQL", "Git"],
   },
   {
     label: "AI & Data Science",
     skills: ["Machine Learning", "Artificial Intelligence", "Deep Learning", "Data Analysis"],
+  },
+  {
+    label: "AI Agents",
+    skills: ["Hermes", "OpenClaw"],
+  },
+  {
+    label: "Databases",
+    skills: ["PostgreSQL", "Redis", "MySQL", "NeonDB", "Qdrant"],
   },
   {
     label: "Robotics & Hardware",
@@ -174,6 +191,7 @@ const platforms = [
   "Firebase",
   "GitHub",
   "Claude Code",
+  "MinIO",
 ];
 
 /** Glass tile with a skillicons.dev icon, official brand logo, or lucide
