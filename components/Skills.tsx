@@ -72,7 +72,6 @@ const ICON_SLUGS: Record<string, string> = {
   "Ethical Hacking": "kali",
   PostgreSQL: "postgresql",
   Redis: "redis",
-  MySQL: "mysql",
 };
 
 /**
@@ -114,6 +113,7 @@ const ICON_LOGOS: Record<
   MinIO: { src: "/logos/minio.svg", invertOnDark: true },
   OpenClaw: { src: "/logos/openclaw.svg" },
   Hermes: { src: "/logos/hermes.png" },
+  MySQL: { src: "/logos/mysql.svg" },
 };
 
 /**
