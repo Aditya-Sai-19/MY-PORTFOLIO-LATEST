@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -183,46 +183,52 @@ const DesktopCard: React.FC<DesktopCardProps> = ({
         className="absolute block origin-top-right rotate-45 bg-border"
         style={{ right: -2, top: 48, width: SQRT_5000, height: 2 }}
       />
-      <img
-        src={testimonial.imgSrc}
-        alt={testimonial.by.split(",")[0]}
-        className="mb-4 h-14 w-12 bg-muted object-cover object-top"
-        style={{ boxShadow: "3px 3px 0px hsl(var(--background))" }}
-      />
-      <h3
-        className={cn(
-          "font-medium leading-relaxed",
-          isCenter ? "text-primary-foreground" : "text-foreground"
-        )}
-        style={{ fontSize: "clamp(0.75rem, 1.4vw, 0.9rem)" }}
-      >
-        &ldquo;{testimonial.quote}&rdquo;
-      </h3>
-      <p
-        className={cn(
-          "absolute bottom-8 left-8 right-8 mt-2 text-sm italic",
-          isCenter ? "text-primary-foreground/80" : "text-muted-foreground"
-        )}
-      >
-        - {testimonial.by}
-      </p>
-      {testimonial.linkedin && (
-        <a
-          href={testimonial.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className={cn(
-            "absolute bottom-8 right-8 inline-flex items-center justify-center transition-colors",
-            isCenter
-              ? "text-primary-foreground/60 hover:text-primary-foreground"
-              : "text-muted-foreground hover:text-accent"
+      <div className="flex h-full flex-col pt-2">
+        <img
+          src={testimonial.imgSrc}
+          alt={testimonial.by.split(",")[0]}
+          className="mb-4 h-14 w-12 bg-muted object-cover object-top"
+          style={{ boxShadow: "3px 3px 0px hsl(var(--background))" }}
+        />
+        <div className="min-h-0 flex-1 overflow-hidden">
+          <h3
+            className={cn(
+              "line-clamp-10 font-medium leading-relaxed",
+              isCenter ? "text-primary-foreground" : "text-foreground"
+            )}
+            style={{ fontSize: "clamp(0.75rem, 1.4vw, 0.9rem)" }}
+          >
+            &ldquo;{testimonial.quote}&rdquo;
+          </h3>
+        </div>
+        <div className="mt-3 flex items-center justify-between">
+          <p
+            className={cn(
+              "text-sm italic",
+              isCenter ? "text-primary-foreground/80" : "text-muted-foreground"
+            )}
+          >
+            - {testimonial.by}
+          </p>
+          {testimonial.linkedin && (
+            <a
+              href={testimonial.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className={cn(
+                "inline-flex items-center justify-center transition-colors",
+                isCenter
+                  ? "text-primary-foreground/60 hover:text-primary-foreground"
+                  : "text-muted-foreground hover:text-accent"
+              )}
+              aria-label={`${testimonial.by.split(",")[0]} on LinkedIn`}
+            >
+              <Linkedin className="h-4 w-4" />
+            </a>
           )}
-          aria-label={`${testimonial.by.split(",")[0]} on LinkedIn`}
-        >
-          <Linkedin className="h-4 w-4" />
-        </a>
-      )}
+        </div>
+      </div>
     </div>
   );
 };
@@ -354,10 +360,34 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({
     };
   }, []);
 
+  /* ---- Touch swipe for mobile ---- */
+  const touchStartX = useRef<number | null>(null);
+  const SWIPE_THRESHOLD = 50;
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+
+  const onTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (touchStartX.current === null) return;
+      const delta = touchStartX.current - e.changedTouches[0].clientX;
+      touchStartX.current = null;
+      if (Math.abs(delta) < SWIPE_THRESHOLD) return;
+      if (delta > 0) goNext();
+      else goPrev();
+    },
+    [goNext, goPrev]
+  );
+
   /* ---- Mobile layout ---- */
   if (isMobile) {
     return (
-      <div className="relative w-full overflow-hidden bg-muted/30 px-4 py-6">
+      <div
+        className="relative w-full overflow-hidden bg-muted/30 px-4 py-6"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         <MobileTestimonialCard testimonial={testimonials[activeIdx]} />
 
         {/* Navigation */}

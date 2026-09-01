@@ -124,29 +124,22 @@ const TESTIMONIALS = [
     src: "/RaajMeesa.jpg",
     linkedin: "https://www.linkedin.com/in/raajmeesa/",
   },
-  // --- Dummy testimonials (commented out) ---
-  // {
-  //   quote:
-  //     "A genuinely curious engineer — he goes deep into the why, not just the how.",
-  //   name: "Sofia Martinez",
-  //   designation: "Data Scientist at InsightLab",
-  //   src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80",
-  // },
-  // {
-  //   quote:
-  //     "He rebuilt our workflow automation and it freed up hours of manual work every single week.",
-  //   name: "Marcus Lee",
-  //   designation: "Operations Lead at FinFlow",
-  //   src: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80",
-  // },
-  // {
-  //   quote:
-  //     "Delivered ahead of schedule with spotless documentation. That combination is rare.",
-  //   name: "Ananya Rao",
-  //   designation: "Project Manager at CloudNova",
-  //   src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=500&q=80",
-  // },
-  // --- End dummy testimonials ---
+  {
+    quote:
+      "It's been wonderful knowing and collaborating with Aditya through different community events. He is incredibly active, approachable, and always brings positive energy to the community. What stands out to me is his genuine interest in connecting with people, exchanging ideas, and making every interaction meaningful. His enthusiasm and willingness to get involved make him a valuable part of any community. He's someone who is always open to new ideas and brings a collaborative spirit wherever he goes. I'm happy to have met him through the community and hope we get to work together on many more events in the future.",
+    name: "Mahima Tiwari",
+    designation: "Anchor at MFUGH Community",
+    src: "/MAHIMA.jpeg",
+    linkedin: "https://www.linkedin.com/in/mahima-tiwari-62313634a/",
+  },
+  {
+    quote:
+      "I had a great experience working with Aditya on the Culture Sense project for Unity Circle, led by Santhana Selvan, through Kodryx AI. Aditya stood out for his ownership, problem-solving ability, and collaborative mindset. He consistently contributed thoughtful ideas, took initiative, and worked with the team to turn concepts into practical solutions. What I particularly appreciated was his willingness to take responsibility and keep things moving even when we faced challenges. It was genuinely a pleasure working with him on this project, and I'd be happy to collaborate with Aditya again.",
+    name: "Venkata Karthik Sai",
+    designation: "AI Engineer Intern at Kodryx AI",
+    src: "/Venkata Karthik Sai.jpg",
+    linkedin: "https://www.linkedin.com/in/venkata-karthik-sai-sunkara/",
+  },
 ];
 
 export default function Home() {
