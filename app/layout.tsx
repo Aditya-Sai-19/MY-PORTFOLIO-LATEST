@@ -9,7 +9,7 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const SITE_URL = "https://aditya-sai-19-portfolio.vercel.app";
+const SITE_URL = "https://aditya-sai.vercel.app";
 
 export const metadata: Metadata = {
   title: {

@@ -154,7 +154,7 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Aditya Sai — AI/ML Engineer Portfolio",
-            url: "https://aditya-sai-19-portfolio.vercel.app",
+            url: "https://aditya-sai.vercel.app",
             description:
               "Portfolio of Kolapalli Aditya Sai, an AI/ML Engineer at Kodryx AI in Hyderabad, India.",
             author: {
@@ -175,8 +175,8 @@ export default function Home() {
             jobTitle: "AI Engineer",
             description:
               "AI/ML Engineer specializing in intelligent systems, applied machine learning, robotics, and cybersecurity. Building production-grade AI solutions.",
-            url: "https://aditya-sai-19-portfolio.vercel.app",
-            image: "https://aditya-sai-19-portfolio.vercel.app/aditya-profile.jpeg",
+            url: "https://aditya-sai.vercel.app",
+            image: "https://aditya-sai.vercel.app/favicon.png",
             email: "workingprofessional19@outlook.com",
             address: {
               "@type": "PostalAddress",

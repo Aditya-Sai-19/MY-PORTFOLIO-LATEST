@@ -1,4 +1,4 @@
-# robots.txt — https://aditya-sai-19-portfolio.vercel.app
+# robots.txt — https://aditya-sai.vercel.app
 
 User-agent: *
 Allow: /
@@ -28,4 +28,4 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://aditya-sai-19-portfolio.vercel.app/sitemap.xml
+Sitemap: https://aditya-sai.vercel.app/sitemap.xml

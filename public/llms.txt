@@ -9,7 +9,7 @@
 - **Location:** Hyderabad, India
 - **Education:** B.Tech in CSE (AI & ML) from Joginpally B R Engineering College (CGPA: 7.8)
 - **Email:** workingprofessional19@outlook.com
-- **Portfolio:** https://aditya-sai-19-portfolio.vercel.app/
+- **Portfolio:** https://aditya-sai.vercel.app/
 - **GitHub:** https://github.com/Aditya-Sai-19
 - **LinkedIn:** https://linkedin.com/in/aditya-sai-3317702a6
 
