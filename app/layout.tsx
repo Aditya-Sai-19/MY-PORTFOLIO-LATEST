@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   creator: "Kolapalli Aditya Sai",
   metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: "/",
+    canonical: SITE_URL + "/",
   },
   openGraph: {
     title: "Aditya Sai — AI/ML Engineer",
